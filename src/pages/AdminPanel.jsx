@@ -18,7 +18,7 @@ const AdminPanel = () => {
 		p20: "",
 		p100: "",
 	});
-  const [list, setList] = useState({
+	const [list, setList] = useState({
 		mm35: "",
 		mm37: "",
 		mm40: "",
@@ -26,11 +26,10 @@ const AdminPanel = () => {
 		mm48: "",
 		mm50: "",
 	});
-  const [glue, setGlue] = useState({
+	const [glue, setGlue] = useState({
 		pena: "",
 		basalt: "",
 	});
-
 
 	const handleInputChange = (e) => {
 		const { name, value } = e.target;
@@ -39,14 +38,14 @@ const AdminPanel = () => {
 			[name]: value,
 		}));
 	};
-  const handleInputChangeList = (e) => {
+	const handleInputChangeList = (e) => {
 		const { name, value } = e.target;
 		setList((prevRaw) => ({
 			...prevRaw,
 			[name]: value,
 		}));
 	};
-  const handleInputChangeGlue = (e) => {
+	const handleInputChangeGlue = (e) => {
 		const { name, value } = e.target;
 		setGlue((prevRaw) => ({
 			...prevRaw,
@@ -58,38 +57,38 @@ const AdminPanel = () => {
 			e.preventDefault(); // To prevent page reload
 			const response = await MoneyOPerations.adminPanelPutBlocks(raw);
 			setActiveModal(false);
-      if (response?.detail) {
-        // Ma'lumotlarni qayta olish
-        getAdminPanel();
-    }
+			if (response?.detail) {
+				// Ma'lumotlarni qayta olish
+				getAdminPanel();
+			}
 			console.log(response);
 		} catch (error) {
 			setActiveModal(false);
 		}
 	};
-  const putAdminPanelList = async (e) => {
+	const putAdminPanelList = async (e) => {
 		try {
 			e.preventDefault(); // To prevent page reload
 			const response = await MoneyOPerations.adminPanelPutLists(list);
 			setActiveModalList(false);
-      if (response?.detail) {
-        // Ma'lumotlarni qayta olish
-        getAdminPanel();
-    }
+			if (response?.detail) {
+				// Ma'lumotlarni qayta olish
+				getAdminPanel();
+			}
 			console.log(response);
 		} catch (error) {
 			setActiveModalList(false);
 		}
 	};
-  const putAdminPanelGlue = async (e) => {
+	const putAdminPanelGlue = async (e) => {
 		try {
 			e.preventDefault(); // To prevent page reload
 			const response = await MoneyOPerations.adminPanelPutGlue(glue);
 			setActiveModalGlue(false);
-      if (response?.detail) {
-        // Ma'lumotlarni qayta olish
-        getAdminPanel();
-    }
+			if (response?.detail) {
+				// Ma'lumotlarni qayta olish
+				getAdminPanel();
+			}
 			console.log(response);
 		} catch (error) {
 			setActiveModalGlue(false);
@@ -102,28 +101,26 @@ const AdminPanel = () => {
 		setBlocks(response?.blocks);
 		setLists(response?.lists);
 		setGlues(response?.glues);
-    setRaw({
-			p10: response?.blocks?.p10 || "",  // Avvalgi qiymatni set qilamiz
+		setRaw({
+			p10: response?.blocks?.p10 || "", // Avvalgi qiymatni set qilamiz
 			p14: response?.blocks?.p14 || "",
 			p16: response?.blocks?.p16 || "",
 			p18: response?.blocks?.p18 || "",
 			p20: response?.blocks?.p20 || "",
 			p100: response?.blocks?.p100 || "",
 		});
-    setList({
-			mm35: response?.lists?.mm35 || "",  // Avvalgi qiymatni set qilamiz
+		setList({
+			mm35: response?.lists?.mm35 || "", // Avvalgi qiymatni set qilamiz
 			mm37: response?.lists?.mm37 || "",
 			mm40: response?.lists?.mm40 || "",
 			mm45: response?.lists?.mm45 || "",
 			mm48: response?.lists?.mm48 || "",
 			mm50: response?.lists?.mm50 || "",
 		});
-    setGlue({
-			pena: response?.glues?.pena || "",  // Avvalgi qiymatni set qilamiz
+		setGlue({
+			pena: response?.glues?.pena || "", // Avvalgi qiymatni set qilamiz
 			basalt: response?.glues?.basalt || "",
 		});
-
-    
 	};
 
 	useEffect(() => {
@@ -131,21 +128,27 @@ const AdminPanel = () => {
 	}, []);
 
 	return (
-		<div className="overflow-x-auto p-4">
-		<div className="flex flex-wrap text-[10px] justify-center  mb-3 sm:justify-between  md:justify-between lg:text-base lg:justify-between">
+		<div className="overflow-x-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100 md:scrollbar-thumb-gray-600">
 
+			<div className="flex flex-wrap text-xs justify-center  mb-3 sm:justify-between  md:justify-between lg:text-base lg:justify-between">
 				<h1 className="pb-4 font-bold text-4xl">Admin Panel</h1>
 				<div className="flex items-center gap-3 ">
 					<button
 						onClick={() => setActiveModal(true)}
-						className="px-5 py-3 rounded-lg bg-red-500 hover:bg-red-800 text-white "
+						className="px-2 py-3 md:px-5 rounded-lg bg-red-500 hover:bg-red-800 text-white "
 					>
 						EDIT PLOTNOST
 					</button>
-					<button onClick={() => setActiveModalList(true)} className="px-5 py-3 rounded-lg bg-red-500 hover:bg-red-800 text-white ">
+					<button
+						onClick={() => setActiveModalList(true)}
+						className="px-5 py-3 rounded-lg bg-red-500 hover:bg-red-800 text-white "
+					>
 						EDIT LIST
 					</button>
-					<button onClick={() => setActiveModalGlue(true)} className="px-5 py-3 rounded-lg bg-red-500 hover:bg-red-800 text-white ">
+					<button
+						onClick={() => setActiveModalGlue(true)}
+						className="px-5 py-3 rounded-lg bg-red-500 hover:bg-red-800 text-white "
+					>
 						EDIT KLEYT
 					</button>
 				</div>
@@ -219,12 +222,10 @@ const AdminPanel = () => {
 					</div>
 				</div>
 			)}
-      {activeModalList && (
+			{activeModalList && (
 				<div className="fixed  inset-0 flex items-center justify-center bg-black bg-opacity-50">
 					<div className="bg-white p-6 rounded-lg shadow-lg w-[300px]">
-						<h2 className="text-xl font-bold uppercase mb-2">
-							Editing Lists
-						</h2>
+						<h2 className="text-xl font-bold uppercase mb-2">Editing Lists</h2>
 						<form onSubmit={putAdminPanelList}>
 							<input
 								name="mm35"
@@ -287,12 +288,10 @@ const AdminPanel = () => {
 					</div>
 				</div>
 			)}
-       {activeModalGlue && (
+			{activeModalGlue && (
 				<div className="fixed  inset-0 flex items-center justify-center bg-black bg-opacity-50">
 					<div className="bg-white p-6 rounded-lg shadow-lg w-[300px]">
-						<h2 className="text-xl font-bold uppercase mb-2">
-							Editing Lists
-						</h2>
+						<h2 className="text-xl font-bold uppercase mb-2">Editing Lists</h2>
 						<form onSubmit={putAdminPanelGlue}>
 							<input
 								name="pena"
@@ -308,7 +307,6 @@ const AdminPanel = () => {
 								type="number"
 								className="rounded-lg mb-1 w-full"
 							/>
-							
 						</form>
 						<div className="flex justify-between">
 							<button
@@ -331,56 +329,56 @@ const AdminPanel = () => {
 			<table className="w-full border-collapse border border-gray-400 text-left shadow-lg rounded-lg">
 				<thead>
 					<tr className="bg-gray-200 text-gray-700">
-						<th className="px-6 py-3 border border-gray-400">BLOK NOMI</th>
-						<th className="px-6 py-3 border border-gray-400">BLOK NARXI </th>
+						<th className="px-6 py-3 border border-gray-400 text-sm md:text-base">BLOK NOMI</th>
+						<th className="px-6 py-3 border border-gray-400 text-sm md:text-base">BLOK NARXI </th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr className="hover:bg-gray-100 transition">
-						<td className="px-6 py-4 border border-gray-300 text-gray-800">
+						<td className="px-6 py-4 border border-gray-300 text-gray-800 text-sm md:text-base">
 							10 PLOTNOST
 						</td>
-						<td className="px-6 py-4 border border-gray-300 text-gray-800">
+						<td className="px-6 py-4 border border-gray-300 text-gray-800 text-sm md:text-base">
 							$ {blocks.p10}
 						</td>
 					</tr>
 					<tr className="hover:bg-gray-100 transition">
-						<td className="px-6 py-4 border border-gray-300 text-gray-800">
+						<td className="px-6 py-4 border border-gray-300 text-gray-800 text-sm md:text-base">
 							14 PLOTNOST
 						</td>
-						<td className="px-6 py-4 border border-gray-300 text-gray-800">
+						<td className="px-6 py-4 border border-gray-300 text-gray-800 text-sm md:text-base">
 							$ {blocks?.p14}
 						</td>
 					</tr>
 					<tr className="hover:bg-gray-100 transition">
-						<td className="px-6 py-4 border border-gray-300 text-gray-800">
+						<td className="px-6 py-4 border border-gray-300 text-gray-800 text-sm md:text-base">
 							16 PLOTNOST
 						</td>
-						<td className="px-6 py-4 border border-gray-300 text-gray-800">
+						<td className="px-6 py-4 border border-gray-300 text-gray-800 text-sm md:text-base">
 							$ {blocks?.p16}
 						</td>
 					</tr>
 					<tr className="hover:bg-gray-100 transition">
-						<td className="px-6 py-4 border border-gray-300 text-gray-800">
+						<td className="px-6 py-4 border border-gray-300 text-gray-800 text-sm md:text-base">
 							18 PLOTNOST
 						</td>
-						<td className="px-6 py-4 border border-gray-300 text-gray-800">
+						<td className="px-6 py-4 border border-gray-300 text-gray-800 text-sm md:text-base">
 							$ {blocks?.p18}
 						</td>
 					</tr>
 					<tr className="hover:bg-gray-100 transition">
-						<td className="px-6 py-4 border border-gray-300 text-gray-800">
+						<td className="px-6 py-4 border border-gray-300 text-gray-800 text-sm md:text-base">
 							20 PLOTNOST
 						</td>
-						<td className="px-6 py-4 border border-gray-300 text-gray-800">
+						<td className="px-6 py-4 border border-gray-300 text-gray-800 text-sm md:text-base">
 							$ {blocks?.p20}
 						</td>
 					</tr>
 					<tr className="hover:bg-gray-100 transition">
-						<td className="px-6 py-4 border border-gray-300 text-gray-800">
+						<td className="px-6 py-4 border border-gray-300 text-gray-800 text-sm md:text-base">
 							100 PLOTNOST BAZALT
 						</td>
-						<td className="px-6 py-4 border border-gray-300 text-gray-800">
+						<td className="px-6 py-4 border border-gray-300 text-gray-800 text-sm md:text-base">
 							$ {blocks?.p100}
 						</td>
 					</tr>
@@ -390,50 +388,50 @@ const AdminPanel = () => {
 					</tr>
 
 					<tr className="hover:bg-gray-100 transition">
-						<td className="px-6 py-4 border border-gray-300 text-gray-800">
+						<td className="px-6 py-4 border border-gray-300 text-gray-800 text-sm md:text-base">
 							0.35 sm
 						</td>
-						<td className="px-6 py-4 border border-gray-300 text-gray-800">
+						<td className="px-6 py-4 border border-gray-300 text-gray-800 text-sm md:text-base">
 							$ {lists?.mm35}
 						</td>
 					</tr>
 					<tr className="hover:bg-gray-100 transition">
-						<td className="px-6 py-4 border border-gray-300 text-gray-800">
+						<td className="px-6 py-4 border border-gray-300 text-gray-800 text-sm md:text-base">
 							0.37 sm
 						</td>
-						<td className="px-6 py-4 border border-gray-300 text-gray-800">
+						<td className="px-6 py-4 border border-gray-300 text-gray-800 text-sm md:text-base">
 							$ {lists?.mm37}
 						</td>
 					</tr>
 					<tr className="hover:bg-gray-100 transition">
-						<td className="px-6 py-4 border border-gray-300 text-gray-800">
+						<td className="px-6 py-4 border border-gray-300 text-gray-800 text-sm md:text-base">
 							0.40 sm
 						</td>
-						<td className="px-6 py-4 border border-gray-300 text-gray-800">
+						<td className="px-6 py-4 border border-gray-300 text-gray-800 text-sm md:text-base">
 							$ {lists?.mm40}
 						</td>
 					</tr>
 					<tr className="hover:bg-gray-100 transition">
-						<td className="px-6 py-4 border border-gray-300 text-gray-800">
+						<td className="px-6 py-4 border border-gray-300 text-gray-800 text-sm md:text-base">
 							0.45 sm
 						</td>
-						<td className="px-6 py-4 border border-gray-300 text-gray-800">
+						<td className="px-6 py-4 border border-gray-300 text-gray-800 text-sm md:text-base">
 							$ {lists?.mm45}
 						</td>
 					</tr>
 					<tr className="hover:bg-gray-100 transition">
-						<td className="px-6 py-4 border border-gray-300 text-gray-800">
+						<td className="px-6 py-4 border border-gray-300 text-gray-800 text-sm md:text-base">
 							0.48 sm
 						</td>
-						<td className="px-6 py-4 border border-gray-300 text-gray-800">
+						<td className="px-6 py-4 border border-gray-300 text-gray-800 text-sm md:text-base">
 							$ {lists?.mm48}
 						</td>
 					</tr>
 					<tr className="hover:bg-gray-100 transition">
-						<td className="px-6 py-4 border border-gray-300 text-gray-800">
+						<td className="px-6 py-4 border border-gray-300 text-gray-800 text-sm md:text-base">
 							0.50 sm
 						</td>
-						<td className="px-6 py-4 border border-gray-300 text-gray-800">
+						<td className="px-6 py-4 border border-gray-300 text-gray-800 text-sm md:text-base">
 							$ {lists?.mm50}
 						</td>
 					</tr>
@@ -443,18 +441,18 @@ const AdminPanel = () => {
 					</tr>
 
 					<tr className="hover:bg-gray-100 transition">
-						<td className="px-6 py-4 border border-gray-300 text-gray-800">
+						<td className="px-6 py-4 border border-gray-300 text-gray-800 text-sm md:text-base">
 							BAZALT
 						</td>
-						<td className="px-6 py-4 border border-gray-300 text-gray-800">
+						<td className="px-6 py-4 border border-gray-300 text-gray-800 text-sm md:text-base">
 							$ {glues?.basalt}
 						</td>
 					</tr>
 					<tr className="hover:bg-gray-100 transition">
-						<td className="px-6 py-4 border border-gray-300 text-gray-800">
+						<td className="px-6 py-4 border border-gray-300 text-gray-800 text-sm md:text-base">
 							PENOPLAST
 						</td>
-						<td className="px-6 py-4 border border-gray-300 text-gray-800">
+						<td className="px-6 py-4 border border-gray-300 text-gray-800 text-sm md:text-base">
 							$ {glues?.pena}
 						</td>
 					</tr>

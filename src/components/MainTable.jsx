@@ -15,17 +15,17 @@ const MainTable = () => {
 		roof: "Tom",
 	};
 	const typeMap2 = {
-		p10: "10 P",
-		p14: "14 P",
-		p16: "16 P",
-		p18: "18 P",
-		p20: "20 P",
+		p10: "10P",
+		p14: "14P",
+		p16: "16P",
+		p18: "18P",
+		p20: "20P",
 		p100: "100 P",
 	};
 
-	const typeMap3 = {
-		mm35: "0.35 sm",
-	};
+	// const typeMap3 = {
+	// 	mm35: "0.35 sm",
+	// };
 
 	const [finallySum, setFinallySum] = useState(null);
 	const allData = async () => {
@@ -107,7 +107,7 @@ const MainTable = () => {
 							<td className="px-6 py-4 border border-gray-300">
 								<Dropdown
 									style={{ background: "#122830" }}
-									label={`${thickness} sm`}
+									label={`${thickness}sm`}
 									dismissOnClick={true}
 								>
 									{[5, 7.5, 8, 10, 12, 15, 20].map((value) => (
@@ -115,7 +115,7 @@ const MainTable = () => {
 											key={value}
 											onClick={() => setThickness(value)}
 										>
-											{value} sm
+											{value}sm
 										</Dropdown.Item>
 									))}
 								</Dropdown>
@@ -176,6 +176,7 @@ const MainTable = () => {
 					</tbody>
 				</table>
 			</div>
+			
 			{/* <button onClick={allData} className="bg-[#122830] text-white py-2 px-5 rounded-lg">Ҳисоблаш</button> */}
 		</div>
 	);

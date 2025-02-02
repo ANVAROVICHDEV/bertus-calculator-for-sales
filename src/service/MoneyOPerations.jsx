@@ -14,10 +14,10 @@ const MoneyOPerations = {
 		const response = await axios.get(`${BaseUrl}/calculate`, {
 			params: {
 				type_: type,
-				thickness,
-				block_column,
-				under_list_column,
-				upper_list_column,
+				thickness:thickness,
+				block_column:block_column,
+				under_list_column:under_list_column,
+				upper_list_column:upper_list_column,
 			},
 			headers: {
 				Accept: "application/json",
