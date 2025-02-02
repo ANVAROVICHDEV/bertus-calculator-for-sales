@@ -1,6 +1,7 @@
 import { FaEdit } from "react-icons/fa";
 import MoneyOPerations from "../service/MoneyOPerations";
 import { useEffect, useState } from "react";
+import Loader from "../components/Loader";
 
 const AdminPanel = () => {
 	const [blocks, setBlocks] = useState("");
@@ -9,6 +10,7 @@ const AdminPanel = () => {
 	const [activeModal, setActiveModal] = useState(false);
 	const [activeModalList, setActiveModalList] = useState(false);
 	const [activeModalGlue, setActiveModalGlue] = useState(false);
+	const [loading, setLoading] = useState(false);
 
 	const [raw, setRaw] = useState({
 		p10: "",
@@ -96,31 +98,37 @@ const AdminPanel = () => {
 	};
 
 	const getAdminPanel = async () => {
-		const response = await MoneyOPerations.adminPanelGet();
-		// console.log(response);
-		setBlocks(response?.blocks);
-		setLists(response?.lists);
-		setGlues(response?.glues);
-		setRaw({
-			p10: response?.blocks?.p10 || "", // Avvalgi qiymatni set qilamiz
-			p14: response?.blocks?.p14 || "",
-			p16: response?.blocks?.p16 || "",
-			p18: response?.blocks?.p18 || "",
-			p20: response?.blocks?.p20 || "",
-			p100: response?.blocks?.p100 || "",
-		});
-		setList({
-			mm35: response?.lists?.mm35 || "", // Avvalgi qiymatni set qilamiz
-			mm37: response?.lists?.mm37 || "",
-			mm40: response?.lists?.mm40 || "",
-			mm45: response?.lists?.mm45 || "",
-			mm48: response?.lists?.mm48 || "",
-			mm50: response?.lists?.mm50 || "",
-		});
-		setGlue({
-			pena: response?.glues?.pena || "", // Avvalgi qiymatni set qilamiz
-			basalt: response?.glues?.basalt || "",
-		});
+		setLoading(true)
+		try {
+			const response = await MoneyOPerations.adminPanelGet();
+			setBlocks(response?.blocks);
+			setLists(response?.lists);
+			setGlues(response?.glues);
+			setRaw({
+				p10: response?.blocks?.p10 || "", // Avvalgi qiymatni set qilamiz
+				p14: response?.blocks?.p14 || "",
+				p16: response?.blocks?.p16 || "",
+				p18: response?.blocks?.p18 || "",
+				p20: response?.blocks?.p20 || "",
+				p100: response?.blocks?.p100 || "",
+			});
+			setList({
+				mm35: response?.lists?.mm35 || "", // Avvalgi qiymatni set qilamiz
+				mm37: response?.lists?.mm37 || "",
+				mm40: response?.lists?.mm40 || "",
+				mm45: response?.lists?.mm45 || "",
+				mm48: response?.lists?.mm48 || "",
+				mm50: response?.lists?.mm50 || "",
+			});
+			setGlue({
+				pena: response?.glues?.pena || "", // Avvalgi qiymatni set qilamiz
+				basalt: response?.glues?.basalt || "",
+			});
+			setLoading(false)
+		} catch (error) {
+			console.log(error);
+			setLoading(false)
+		}
 	};
 
 	useEffect(() => {
@@ -128,8 +136,7 @@ const AdminPanel = () => {
 	}, []);
 
 	return (
-		<div className="overflow-x-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100 md:scrollbar-thumb-gray-600">
-
+		<div className="p-4 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100 md:scrollbar-thumb-gray-600">
 			<div className="flex flex-wrap text-xs justify-center  mb-3 sm:justify-between  md:justify-between lg:text-base lg:justify-between">
 				<h1 className="pb-4 font-bold text-4xl">Admin Panel</h1>
 				<div className="flex items-center gap-3 ">
@@ -326,11 +333,16 @@ const AdminPanel = () => {
 					</div>
 				</div>
 			)}
-			<table className="w-full border-collapse border border-gray-400 text-left shadow-lg rounded-lg">
+			{
+				loading ? <Loader /> : <table className="w-full border-collapse border border-gray-400 text-left shadow-lg rounded-lg">
 				<thead>
 					<tr className="bg-gray-200 text-gray-700">
-						<th className="px-6 py-3 border border-gray-400 text-sm md:text-base">BLOK NOMI</th>
-						<th className="px-6 py-3 border border-gray-400 text-sm md:text-base">BLOK NARXI </th>
+						<th className="px-6 py-3 border border-gray-400 text-sm md:text-base">
+							BLOK NOMI
+						</th>
+						<th className="px-6 py-3 border border-gray-400 text-sm md:text-base">
+							BLOK NARXI{" "}
+						</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -458,6 +470,7 @@ const AdminPanel = () => {
 					</tr>
 				</tbody>
 			</table>
+			}
 			<footer>
 				<h1 className="p-5 bg-slate-400 sm:text-center">
 					© 2025 Sardor. All Rights Reserved.

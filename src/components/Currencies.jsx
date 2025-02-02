@@ -18,10 +18,15 @@ function Currencies({ setShowCurrencies, setRenderPage, renderPage }) {
 	};
 
 	const CreateCurrencies = async () => {
-		const numericValue = value.replace(/,/g, ""); // Formatni olib tashlash
-		const response = await MoneyOPerations.currensiesPost(numericValue);
-		setRenderPage(!renderPage);
-		setShowCurrencies(false);
+		setLoading(true)
+		try {
+			const numericValue = value.replace(/,/g, ""); // Formatni olib tashlash
+			const response = await MoneyOPerations.currensiesPost(numericValue);
+			setRenderPage(!renderPage);
+			setShowCurrencies(false);
+		} catch (error) {
+			console.log(error)
+		}
 	};
 
 	const handleSubmit = (e) => {
