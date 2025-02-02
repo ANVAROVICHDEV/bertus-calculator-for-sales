@@ -1,0 +1,5 @@
+export {default as Header} from "./Header"
+export {default as HomePage} from "../pages/HomePage"
+export {default as MainTable} from "./MainTable"
+export {default as Currencies} from "./Currencies"
+export {default as AdminPanel} from "../pages/AdminPanel"
