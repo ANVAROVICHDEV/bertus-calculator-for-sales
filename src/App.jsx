@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AdminPanel, HomePage } from "./components/index";
+import "./assets/styles/global.css"
 
 const App = () => {
 	return (

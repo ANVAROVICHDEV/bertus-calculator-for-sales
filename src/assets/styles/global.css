@@ -1,0 +1,15 @@
+/* Mobil qurilmalarda scrollbar chiqishi uchun */
+.scrollbar-thin::-webkit-scrollbar {
+    height: 8px; /* Gorizontal scroll uchun */
+    width: 8px;  /* Vertikal scroll uchun */
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: gray; /* Scroll chizig'ining rangi */
+    border-radius: 5px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Scroll foni */
+  }
+  
