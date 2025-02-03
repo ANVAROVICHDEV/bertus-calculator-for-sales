@@ -18,7 +18,6 @@ function Currencies({ setShowCurrencies, setRenderPage, renderPage }) {
 	};
 
 	const CreateCurrencies = async () => {
-		setLoading(true)
 		try {
 			const numericValue = value.replace(/,/g, ""); // Formatni olib tashlash
 			const response = await MoneyOPerations.currensiesPost(numericValue);

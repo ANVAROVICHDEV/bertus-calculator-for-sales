@@ -1,7 +1,6 @@
 import { FaEdit } from "react-icons/fa";
 import MoneyOPerations from "../service/MoneyOPerations";
 import { useEffect, useState } from "react";
-import Loader from "../components/Loader";
 
 const AdminPanel = () => {
 	const [blocks, setBlocks] = useState("");
@@ -10,7 +9,6 @@ const AdminPanel = () => {
 	const [activeModal, setActiveModal] = useState(false);
 	const [activeModalList, setActiveModalList] = useState(false);
 	const [activeModalGlue, setActiveModalGlue] = useState(false);
-	const [loading, setLoading] = useState(false);
 
 	const [raw, setRaw] = useState({
 		p10: "",
@@ -98,7 +96,6 @@ const AdminPanel = () => {
 	};
 
 	const getAdminPanel = async () => {
-		setLoading(true)
 		try {
 			const response = await MoneyOPerations.adminPanelGet();
 			setBlocks(response?.blocks);
@@ -124,10 +121,8 @@ const AdminPanel = () => {
 				pena: response?.glues?.pena || "", // Avvalgi qiymatni set qilamiz
 				basalt: response?.glues?.basalt || "",
 			});
-			setLoading(false)
 		} catch (error) {
 			console.log(error);
-			setLoading(false)
 		}
 	};
 
@@ -142,19 +137,19 @@ const AdminPanel = () => {
 				<div className="flex items-center gap-3 ">
 					<button
 						onClick={() => setActiveModal(true)}
-						className="px-2 py-3 md:px-5 rounded-lg bg-red-500 hover:bg-red-800 text-white "
+						className="px-2 py-3 md:px-5 rounded-lg bg-[#122830] hover:bg-slate-700 text-white "
 					>
 						EDIT PLOTNOST
 					</button>
 					<button
 						onClick={() => setActiveModalList(true)}
-						className="px-5 py-3 rounded-lg bg-red-500 hover:bg-red-800 text-white "
+						className="px-5 py-3 rounded-lg bg-[#122830] hover:bg-slate-700 text-white "
 					>
 						EDIT LIST
 					</button>
 					<button
 						onClick={() => setActiveModalGlue(true)}
-						className="px-5 py-3 rounded-lg bg-red-500 hover:bg-red-800 text-white "
+						className="px-5 py-3 rounded-lg bg-[#122830] hover:bg-slate-700 text-white "
 					>
 						EDIT KLEYT
 					</button>
@@ -214,14 +209,14 @@ const AdminPanel = () => {
 						<div className="flex justify-between">
 							<button
 								onClick={() => setActiveModal(false)}
-								className="mt-4 px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-700"
+								className="mt-4 px-4 py-2 bg-[#122830] hover:bg-slate-700 text-white rounded-lg "
 							>
 								Close
 							</button>
 							<button
 								type="submit"
 								onClick={putAdminPanelBlock}
-								className="mt-4 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-700"
+								className="mt-4 px-4 py-2 bg-[#122830] hover:bg-slate-700 text-white rounded-lg "
 							>
 								Edit
 							</button>
@@ -280,14 +275,14 @@ const AdminPanel = () => {
 						<div className="flex justify-between">
 							<button
 								onClick={() => setActiveModalList(false)}
-								className="mt-4 px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-700"
+								className="mt-4 px-4 py-2 bg-[#122830] hover:bg-slate-700 text-white rounded-lg "
 							>
 								Close
 							</button>
 							<button
 								type="submit"
 								onClick={putAdminPanelList}
-								className="mt-4 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-700"
+								className="mt-4 px-4 py-2 bg-[#122830] hover:bg-slate-700 text-white rounded-lg "
 							>
 								Edit
 							</button>
@@ -318,14 +313,14 @@ const AdminPanel = () => {
 						<div className="flex justify-between">
 							<button
 								onClick={() => setActiveModalGlue(false)}
-								className="mt-4 px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-700"
+								className="mt-4 px-4 py-2 bg-[#122830] hover:bg-slate-700 text-white rounded-lg "
 							>
 								Close
 							</button>
 							<button
 								type="submit"
 								onClick={putAdminPanelGlue}
-								className="mt-4 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-700"
+								className="mt-4 px-4 py-2 bg-[#122830] hover:bg-slate-700 text-white rounded-lg "
 							>
 								Edit
 							</button>
@@ -334,7 +329,7 @@ const AdminPanel = () => {
 				</div>
 			)}
 			{
-				loading ? <Loader /> : <table className="w-full border-collapse border border-gray-400 text-left shadow-lg rounded-lg">
+				<table className="w-full border-collapse border border-gray-400 text-left shadow-lg rounded-lg">
 				<thead>
 					<tr className="bg-gray-200 text-gray-700">
 						<th className="px-6 py-3 border border-gray-400 text-sm md:text-base">
@@ -472,8 +467,8 @@ const AdminPanel = () => {
 			</table>
 			}
 			<footer>
-				<h1 className="p-5 bg-slate-400 sm:text-center">
-					© 2025 Sardor. All Rights Reserved.
+				<h1 className="w-full text-center bg-[#122830] text-white p-2">
+					© 2025 Zero. All Rights Reserved.
 				</h1>
 			</footer>
 		</div>

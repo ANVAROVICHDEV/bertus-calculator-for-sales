@@ -7,7 +7,7 @@ const App = () => {
 		<BrowserRouter>
 			<Routes>
 				<Route path="/" element={<HomePage />} />
-				<Route path="/sardor" element={<AdminPanel />}/>
+				<Route path="/HjnJhjhHnMNHGjhKjuGFrdfg" element={<AdminPanel />}/>
 			</Routes>
 		</BrowserRouter>
 	);
